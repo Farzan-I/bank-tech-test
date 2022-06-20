@@ -35,9 +35,13 @@ class Bank
   end
 
   def calculate_withdraw(amount, date)
-    @balance -= amount
-    @amount_moved = amount
-    @messages.push "#{date} || || %.2f" % [@amount_moved] + " || %.2f" % [@balance]
+    if amount > @balance
+      "Exceeded available balance, please withdraw a smaller amount"
+    else
+      @balance -= amount
+      @amount_moved = amount
+      @messages.push "#{date} || || %.2f" % [@amount_moved] + " || %.2f" % [@balance]
+    end
   end
   
 end
