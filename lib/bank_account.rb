@@ -15,13 +15,11 @@ class Bank
     self.calc_deposit(amount, date)
   end
 
-  private
-
-  def calc_deposit(amount, date)
-    @balance += amount
-    @amount_moved = amount
-    @messages.push "#{date} || %.2f" % [@amount_moved] + " || || %.2f" % [@balance]
+  def withdraw(amount, date)
+    self.calculate_withdraw(amount, date)
   end
+
+  private
 
   def calc_statement
     @messages.push(@header)
@@ -29,4 +27,17 @@ class Bank
       puts transaction
     end
   end
+
+  def calc_deposit(amount, date)
+    @balance += amount
+    @amount_moved = amount
+    @messages.push "#{date} || %.2f" % [@amount_moved] + " || || %.2f" % [@balance]
+  end
+
+  def calculate_withdraw(amount, date)
+    @balance -= amount
+    @amount_moved = amount
+    @messages.push "#{date} || || %.2f" % [@amount_moved] + " || %.2f" % [@balance]
+  end
+  
 end

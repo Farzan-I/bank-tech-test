@@ -1,9 +1,11 @@
 require 'bank_account'
 
 describe Bank do
+
   before(:each) do
     @bank = Bank.new
   end
+  
   context 'header of statement' do
     it 'displays the heading of the statement' do
       expect(@bank.statement).to eq ["date   || credit || debit || balance"]
@@ -30,7 +32,17 @@ describe Bank do
     end
   end
 
-
-
+  context 'original test criteria' do
+    it 'tests the original criteria of the bank tech test' do
+      @bank.deposit(1000, '10/01/2023')
+      @bank.deposit(2000, '13/01/2023')
+      @bank.withdraw(500, '14/01/2023')
+      
+      expect(@bank.statement).to eq (['date   || credit || debit || balance',
+        '14/01/2023 || || 500.00 || 2500.00',
+        '13/01/2023 || 2000.00 || || 3000.00',
+        '10/01/2023 || 1000.00 || || 1000.00'])
+    end
+  end
 
 end
