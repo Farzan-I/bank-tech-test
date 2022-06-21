@@ -1,9 +1,6 @@
 # Bank Tech Test
 
 ```
-──────────────────██████────────────────
-─────────────────████████─█─────────────
-─────────────██████████████─────────────
 ─────────────█████████████──────────────
 ──────────────███████████───────────────
 ───────────────██████████───────────────
@@ -11,29 +8,29 @@
 ────────────────▐██████─────────────────
 ────────────────▐██████─────────────────
 ──────────────── ▌─────▌────────────────
-────────────────███─█████───────────────
+────────────────█████████───────────────
 ────────────████████████████────────────
-──────────████████████████████──────────
-────────████████████─────███████────────
-──────███████████─────────███████───────
-─────████████████───██─███████████──────
-────██████████████──────────████████────
-───████████████████─────█───█████████───
-──█████████████████████─██───█████████──
-──█████████████████████──██──██████████─
-─███████████████████████─██───██████████
-████████████████████████──────██████████
-███████████████████──────────███████████
-─██████████████████───────██████████████
-─███████████████████████──█████████████─
+──────────███████████  ███████──────────
+────────████████████     ███████────────
+──────███████████          ██████───────
+─────████████████   ██  ██████████──────
+────████████████            ████████────
+───██████████████       █   █████████───
+──████████████████████  ██   █████████──
+──█████████████████████  ██   █████████─
+─██████████████████████  ██   ██████████
+███████████████████████       ██████████
+███████████████████          ███████████
+─███████████████████████  ██████████████
+─███████████████████████  █████████████─
 ──█████████████████████████████████████─
 ───██████████████████████████████████───
 ───────██████████████████████████████───
 ───────██████████████████████████───────
 ─────────────███████████████────────────
-
 ```
 
+## Introduction
 Given a tech test which aimed to replicate an actual job interview tech test. This gave an opportunity to showcase OO design and TDD skills. Time limit of 48 hours to implement the below acceptance criteria. 
 
 ## Specification
@@ -72,8 +69,9 @@ date || credit || debit || balance
 
 ### Ruby IRB command line interface snippet 
 
-* Navigate to bank account directory
+#### How to run this program
 * Follow the installation steps
+* Navigate to bank account directory
 * Type into command line/REPL `irb` to be able to run **interactive ruby**
 * Type `require './lib/bank_account'` to use the ruby file
 * Set up a new bank account and call it anything i.e. `my_first_account = Bank.new`
@@ -87,25 +85,34 @@ farzan bank % irb
  => true 
 3.0.2 :002 > account1 = Bank.new
  => 
-#<Bank:0x00007fa40a8c2728
+#<Bank:0x00007fd7bb1b38d0
 ... 
 3.0.2 :003 > account1.deposit(150, '9/09/2009')
  => ["9/09/2009 || 150.00 || || 150.00"] 
 3.0.2 :004 > account1.withdraw(25, '10/09/2009')
  => ["9/09/2009 || 150.00 || || 150.00", "10/09/2009 || || 25.00 || 125.00"] 
 3.0.2 :005 > account1.statement
-9/09/2009 || 150.00 || || 150.00
-10/09/2009 || || 25.00 || 125.00
 date   || credit || debit || balance
+10/09/2009 || || 25.00 || 125.00
+9/09/2009 || 150.00 || || 150.00
  => 
 ["date   || credit || debit || balance",
  "10/09/2009 || || 25.00 || 125.00",
  "9/09/2009 || 150.00 || || 150.00"] 
+3.0.2 :006 > quit
 ```
+## My approach
+* Started off by planning what I expected my bank class to look like and took into account the functionality of it
+* 
 
-## Edge Case
-Cannot withdraw an amount that is greater than the balance - unfortunately this bank does not provide planned or unplanned overdrafts.
+## Edge cases
+* Cannot withdraw an amount that is greater than their balance - unfortunately this bank does not provide planned or unplanned overdrafts
+* A default date of the current time (in day/month/year format) is provided when there is no specified date
 
-### Criteria Form
+## Future integrations
+* Have the date become self reliant and not be dependent on the input from a client - having the default value for the date in place helps but I believe there must be a better way to do this
+* As this is done in Ruby, there is an implicit return from the method and therefore the statement output is given twice - would try to see if there is a better way to do this
+* Ideally I would've liked to have split my bank class into maybe 3 classes (one as the bank, one as the transactions and one as the statements) - this is something I will try to implement on another occassion. This also goes to show I should've planned my approach better and known what I wanted to do before hand
+
+### Criteria form
 Once completed the challenge and happy with the solution, here's the form to help reflect on the quality of the code: [form](https://docs.google.com/forms/d/1Q-NnqVObbGLDHxlvbUfeAC7yBCf3eCjTmz6GOqC9Aeo/edit)
-
