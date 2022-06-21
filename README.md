@@ -103,7 +103,12 @@ date   || credit || debit || balance
 ```
 ## My approach
 * Started off by planning what I expected my bank class to look like and took into account the functionality of it
-* 
+* Went by the acceptance criteria and made a deposit, withdrawal and statement feature
+* I had issues with the date formatting as well as the string interpolation for the amounts being 2 decimal places
+* This was rectified with the use of `+` string interpolation (that Rubocop did not like) which meant I could have the amounts in 2 decimal places (like how it appears in an actual bank statement)
+* With the dates, they were previously required to be inputted manually, where as now using a date method it can be left blank and the default date will be the date of when the transaction took place (in day/month/year format)
+* Needing the transactions to be newest first, I had issues trying to implement this as (if you look through the commits for this repo) the transactions were first printed oldest first then with the use of puts from ruby the outputted log in the terminal would have it the way required
+* This was changed by changing the way the statement method was used. I scraped the idea of the second calc_statement method as a private function and just made the statement method give the transactions that were required
 
 ## Edge cases
 * Cannot withdraw an amount that is greater than their balance - unfortunately this bank does not provide planned or unplanned overdrafts
