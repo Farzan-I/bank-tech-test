@@ -79,28 +79,8 @@ date || credit || debit || balance
 * Either of these take two arguments, one is the amount and the second is the date (in string format - day/month/year) i.e. `my_first_account.deposit(1000, '10/10/2010')`
 * Use `.statement` on your account to get the transactions placed
 
-```
-farzan bank % irb
-3.0.2 :001 > require './lib/bank_account'
- => true 
-3.0.2 :002 > account1 = Bank.new
- => 
-#<Bank:0x00007fd7bb1b38d0
-... 
-3.0.2 :003 > account1.deposit(150, '9/09/2009')
- => ["9/09/2009 || 150.00 || || 150.00"] 
-3.0.2 :004 > account1.withdraw(25, '10/09/2009')
- => ["9/09/2009 || 150.00 || || 150.00", "10/09/2009 || || 25.00 || 125.00"] 
-3.0.2 :005 > account1.statement
-date   || credit || debit || balance
-10/09/2009 || || 25.00 || 125.00
-9/09/2009 || 150.00 || || 150.00
- => 
-["date   || credit || debit || balance",
- "10/09/2009 || || 25.00 || 125.00",
- "9/09/2009 || 150.00 || || 150.00"] 
-3.0.2 :006 > quit
-```
+![bank_screenshot](images/bank_screenshot.png)
+
 ## My approach
 * Started off by planning what I expected my bank class to look like and took into account the functionality of it
 * Went by the acceptance criteria and made a deposit, withdrawal and statement feature
