@@ -6,5 +6,8 @@ class Statement
   def initialize
     @transactions = []
   end
-  
+
+  def details
+    account_statement = 'date   || credit || debit || balance'
+  end
 end
