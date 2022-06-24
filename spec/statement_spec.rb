@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 require 'statement'
 
@@ -11,19 +11,23 @@ describe Statement do
     expect(statement.transactions).to eq []
   end
 
-  it 'prints an empty statement with just the header when there are no transactions' do
-    empty_statement = 'date   || credit || debit || balance'
-    expect(statement.details).to eq empty_statement
+  describe '#details' do
+    it 'prints an empty statement with just the header when there are no transactions' do
+      empty_statement = 'date   || credit || debit || balance'
+      expect(statement.details).to eq empty_statement
+    end
+
+    it 'prints a statement with the deposit and withdraw taken into account' do
+      statement.transactions.push(mock_deposit, mock_withdraw)
+      expected_statement = "date   || credit || debit || balance\n23/06/2022 || 500.00 ||  || 500.00\n24/06/2022 ||  || 200.00 || 300.00"
+      expect(statement.details).to eq expected_statement
+    end
   end
 
-  it 'prints a statement with the deposit and withdraw taken into account' do
-    statement.transactions.push(mock_deposit, mock_withdraw)
-    expected_statement = "date   || credit || debit || balance\n23/06/2022 || 500.00 ||  || 500.00\n24/06/2022 ||  || 200.00 || 300.00"
-    expect(statement.details).to eq expected_statement
-  end
-
-  it 'adds a transaction to the statement array' do
-    statement.add(mock_deposit)
-    expect(statement.transactions).to eq [mock_deposit]    
+  describe '#add' do
+    it 'adds a transaction to the statement array' do
+      statement.add(mock_deposit)
+      expect(statement.transactions).to eq [mock_deposit]
+    end
   end
 end
