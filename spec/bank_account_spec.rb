@@ -25,23 +25,20 @@ describe Bank_account do
       account.deposit(1000)
     end
   end
-
+  
   it 'client can withdraw amount from their account' do
     account.deposit(1000)
     account.withdraw(500)
     expect(account.balance).to eq 500
   end
-
-  context 'withdraw can be made' do
-    xit 'shows withdrawal of £25.00 on 22/06/2022 from £50.00 balance' do
-      @bank.deposit(50, '20/06/2022')
-      @bank.withdraw(25, '22/06/2022')
-      expect(@bank.statement).to eq ['date   || credit || debit || balance',
-        '22/06/2022 || || 25.00 || 25.00',
-        '20/06/2022 || 50.00 || || 50.00']
-    end
+  
+  it 'calls the statement class to add the specified transaction' do
+    expect(mock_statement).to receive(:add)
+    expect(transaction_class_dbl).to receive(:new)
+    account.withdraw(500)
   end
-
+  
+  
   context 'original test criteria' do
     xit 'tests the original criteria of the bank tech test' do
       @bank.deposit(1000, '10/01/2023')
