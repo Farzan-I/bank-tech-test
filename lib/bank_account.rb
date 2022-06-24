@@ -2,6 +2,8 @@
 
 # Passing all tests
 class Bank_account
+  attr_reader :balance
+
   def initialize
     @header = 'date   || credit || debit || balance'
     @balance = 0
