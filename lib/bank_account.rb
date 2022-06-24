@@ -1,7 +1,7 @@
 # frozen_string_literal: false
 
 # Passing all tests
-class Bank
+class Bank_account
   def initialize
     @header = 'date   || credit || debit || balance'
     @balance = 0

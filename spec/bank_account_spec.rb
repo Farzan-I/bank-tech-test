@@ -2,9 +2,9 @@
 
 require 'bank_account'
 
-describe Bank do
+describe Bank_account do
   before(:each) do
-    @bank = Bank.new
+    @bank = Bank_account.new
   end
   context 'header of statement' do
     it 'displays the heading of the statement' do
