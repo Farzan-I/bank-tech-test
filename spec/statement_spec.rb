@@ -21,4 +21,9 @@ describe Statement do
     expected_statement = "date   || credit || debit || balance\n23/06/2022 || 500.00 ||  || 500.00\n24/06/2022 ||  || 200.00 || 300.00"
     expect(statement.details).to eq expected_statement
   end
+
+  it 'adds a transaction to the statement array' do
+    statement.add(mock_deposit)
+    expect(statement.transactions).to eq [mock_deposit]    
+  end
 end
