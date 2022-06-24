@@ -20,4 +20,8 @@ class Statement
     end
     statement.join("\n")
   end
+
+  def add(transaction)
+    @transactions.unshift(transaction)
+  end
 end
