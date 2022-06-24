@@ -11,11 +11,11 @@ describe Bank_account do
     expect(@account.balance).to eq 0
   end
 
-  context 'header of statement' do
-    xit 'displays the heading of the statement' do
-      expect(@bank.statement).to eq ['date   || credit || debit || balance']
-    end
+  it 'allows client to deposit an amount into their account' do
+    @account.deposit(1000)
+    expect(@account.balance).to eq 1000
   end
+
   context 'deposit can be made' do
     xit 'deposits £50, statement updates in credit and balance on 20/06/2022' do
       @bank.deposit(50, '20/06/2022')
