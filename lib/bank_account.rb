@@ -2,43 +2,43 @@
 
 # Passing all tests
 class Bank_account
-  attr_reader :balance
+  attr_reader :balance, :statement
 
-  def initialize
-    @header = 'date   || credit || debit || balance'
+  def initialize(statement_class = Statement, transaction_class = Transaction)
     @balance = 0
-    @amount_moved = 0
-    @messages = []
+    @statement = statement_class.new
+    @transaction_class = transaction_class
   end
 
-  def statement
-    @messages.push(@header)
-    @messages.reverse!
-    @messages.each do |transaction|
-      puts transaction
-    end
-  end
+  # def statement
+  #   @messages.push(@header)
+  #   @messages.reverse!
+  #   @messages.each do |transaction|
+  #     puts transaction
+  #   end
+  # end
 
-  def deposit(amount, date = date_default)
-    calc_deposit(amount, date)
+  def deposit(amount)
+    @balance += amount
+    @statement.add(@transaction_class.new(debit: nil, credit: amount, new_balance: @balance))
   end
 
   def withdraw(amount, date = date_default)
     calculate_withdraw(amount, date)
   end
 
-  private
+  # private
 
-  def date_default
-    time = Time.now
-    time.strftime("%d/%m/%Y")
-  end
+  # def date_default
+  #   time = Time.now
+  #   time.strftime("%d/%m/%Y")
+  # end
 
-  def calc_deposit(amount, date = date_default)
-    @balance += amount
-    @amount_moved = amount
-    @messages.push "#{date} || %.2f" % [@amount_moved] + ' || || %.2f' % [@balance]
-  end
+  # def calc_deposit(amount, date = date_default)
+    
+  #   @amount_moved = amount
+  #   # @messages.push "#{date} || %.2f" % [@amount_moved] + ' || || %.2f' % [@balance]
+  # end
 
   def calculate_withdraw(amount, date = date_default)
     if amount > @balance
@@ -46,7 +46,7 @@ class Bank_account
     else
       @balance -= amount
       @amount_moved = amount
-      @messages.push "#{date} || || %.2f" % [@amount_moved] + ' || %.2f' % [@balance]
+      # @messages.push "#{date} || || %.2f" % [@amount_moved] + ' || %.2f' % [@balance]
     end
   end
 end
