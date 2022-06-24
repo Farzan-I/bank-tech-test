@@ -26,28 +26,29 @@ describe Bank_account do
     end
   end
   
-  it 'client can withdraw amount from their account' do
-    account.deposit(1000)
-    account.withdraw(500)
-    expect(account.balance).to eq 500
-  end
-  
-  it 'calls the statement class to add the specified transaction' do
-    expect(mock_statement).to receive(:add)
-    expect(transaction_class_dbl).to receive(:new)
-    account.withdraw(500)
-  end
-  
-  
-  context 'original test criteria' do
-    xit 'tests the original criteria of the bank tech test' do
-      @bank.deposit(1000, '10/01/2023')
-      @bank.deposit(2000, '13/01/2023')
-      @bank.withdraw(500, '14/01/2023')
-      expect(@bank.statement).to eq ['date   || credit || debit || balance',
-        '14/01/2023 || || 500.00 || 2500.00',
-        '13/01/2023 || 2000.00 || || 3000.00',
-        '10/01/2023 || 1000.00 || || 1000.00']
+  describe '#withdraw' do
+    it 'client can withdraw amount from their account' do
+      account.deposit(1000)
+      account.withdraw(500)
+      expect(account.balance).to eq 500
+    end
+    
+    it 'calls the statement class to add the specified transaction' do
+      expect(mock_statement).to receive(:add)
+      expect(transaction_class_dbl).to receive(:new)
+      account.withdraw(500)
     end
   end
+  
+  # context 'original test criteria' do
+  #   xit 'tests the original criteria of the bank tech test' do
+  #     @bank.deposit(1000, '10/01/2023')
+  #     @bank.deposit(2000, '13/01/2023')
+  #     @bank.withdraw(500, '14/01/2023')
+  #     expect(@bank.statement).to eq ['date   || credit || debit || balance',
+  #       '14/01/2023 || || 500.00 || 2500.00',
+  #       '13/01/2023 || 2000.00 || || 3000.00',
+  #       '10/01/2023 || 1000.00 || || 1000.00']
+  #   end
+  # end
 end
