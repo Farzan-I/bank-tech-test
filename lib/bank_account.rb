@@ -10,35 +10,15 @@ class Bank_account
     @transaction_class = transaction_class
   end
 
-  # def statement
-  #   @messages.push(@header)
-  #   @messages.reverse!
-  #   @messages.each do |transaction|
-  #     puts transaction
-  #   end
-  # end
-
   def deposit(amount)
     @balance += amount
     @statement.add(@transaction_class.new(debit: nil, credit: amount, new_balance: @balance))
   end
 
-  def withdraw(amount, date = date_default)
-    calculate_withdraw(amount, date)
+  def withdraw(amount)
+    @balance -= amount
+    @statement.add(@transaction_class.new(debit: amount, credit: nil, new_balance: @balance))
   end
-
-  # private
-
-  # def date_default
-  #   time = Time.now
-  #   time.strftime("%d/%m/%Y")
-  # end
-
-  # def calc_deposit(amount, date = date_default)
-    
-  #   @amount_moved = amount
-  #   # @messages.push "#{date} || %.2f" % [@amount_moved] + ' || || %.2f' % [@balance]
-  # end
 
   def calculate_withdraw(amount, date = date_default)
     if amount > @balance
