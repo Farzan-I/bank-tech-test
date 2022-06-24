@@ -26,6 +26,12 @@ describe Bank_account do
     end
   end
 
+  it 'client can withdraw amount from their account' do
+    account.deposit(1000)
+    account.withdraw(500)
+    expect(account.balance).to eq 500
+  end
+
   context 'withdraw can be made' do
     xit 'shows withdrawal of £25.00 on 22/06/2022 from £50.00 balance' do
       @bank.deposit(50, '20/06/2022')
